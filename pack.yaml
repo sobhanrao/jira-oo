@@ -1,0 +1,10 @@
+---
+ref: jira_oo
+name: Jira MicroFocus operations orchestration Integration
+description: Pack containing sensor for jira, rule, and action for oo.
+keywords:
+    - Jira OO
+    - MF operations orchestration
+version: 0.1.0
+author: DXC.
+email: sobhan.glsr@dxc.com

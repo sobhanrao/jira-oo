@@ -1,0 +1,15 @@
+---
+name: oo_exec_flow
+runner_type: python-script
+description: Execute OO Workflow based on flowid and flow name.
+enabled: true
+entry_point: oo_exec_flow.py
+parameters:
+  oo_flow_id:
+    type: string
+    description: OO Flow Id.
+    required: true
+  oo_flow_name:
+    type: string
+    description: OO Flow Name.
+    required: true
