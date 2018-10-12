@@ -1,5 +1,5 @@
 from jira.client import JIRA
-
+import datetime
 from st2reactor.sensor.base import PollingSensor
 
 
