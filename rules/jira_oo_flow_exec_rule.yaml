@@ -1,0 +1,15 @@
+---
+    name: "jira_oo_flow_mapping"                      # required
+    pack: "jira_oo"                       # optional
+    description: "Rule description."       # optional
+    enabled: true                          # required
+
+    trigger:                               # required
+        type: "jira_oo.oo_issues_tracker"
+
+    
+    action:                                # required
+        ref: "jira_oo.oo_exec_flow"
+        parameters:                        # optional
+            oo_flow_id: "9307a65d-a4c2-4495-9bee-9c77413b6baa"
+            oo_flow_name: "Smart Store transaction failure for user"
