@@ -40,8 +40,6 @@ class JiraOOSensor(PollingSensor):
         payload = {}
         payload['issue_name'] = issue.key
         payload['issue_url'] = issue.self
-        payload['issue_browse_url'] = self._jira_url + '/browse/' + issue.key
-        payload['project'] = self._project
         payload['created'] = issue.raw['fields']['created']
         payload['assignee'] = issue.raw['fields']['assignee']
         payload['summary'] = issue.raw['fields']['summary']
