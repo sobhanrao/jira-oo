@@ -45,3 +45,4 @@ class JiraOOSensor(PollingSensor):
         payload['description'] = issue.raw['fields']['description']
         payload['issue_type'] = issue.raw['fields']['issuetype']['name']
         self._sensor_service.dispatch(trigger, payload)
+        self._logger.info("Fired _dispatch_issues_trigger :"+str(datetime.datetime.now()));
