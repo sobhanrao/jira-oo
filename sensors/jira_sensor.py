@@ -10,8 +10,10 @@ class JiraOOSensor(PollingSensor):
         self._jira_client = JIRA('http://jira-ams.demodxc.com',auth=('autoresolver', 'password'))
 
     def poll(self):
-       	for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
-           self._dispatch_issues_trigger(issue)
+         print("Entered Poll");
+         for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
+             print('{}: {}'.format(issue.key, issue.fields.summary))
+             self._dispatch_issues_trigger(issue)
 	    
 
     def cleanup(self):
@@ -32,6 +34,7 @@ class JiraOOSensor(PollingSensor):
         pass
 		
     def _dispatch_issues_trigger(self, issue):
+        print("Entered _dispatch_issues_trigger :"+datetime.datetime.now());
         trigger = 'jira_oo.oo_issues_tracker'
         payload = {}
         payload['issue_name'] = issue.key
