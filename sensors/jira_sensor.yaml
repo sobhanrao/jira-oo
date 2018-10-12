@@ -2,7 +2,7 @@
   class_name: "JiraOOSensor"
   entry_point: "jira_sensor.py"
   description: "Sensor which monitors JIRA for new tickets"
-  poll_interval: 30
+  poll_interval: 300
   trigger_types:
     -
       name: "oo_issues_tracker"
