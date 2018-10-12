@@ -11,9 +11,9 @@ class JiraOOSensor(PollingSensor):
          self._logger = self.sensor_service.get_logger(name=self.__class__.__name__)
 
     def poll(self):
-         self._logger.debug("Entered Poll"+str(datetime.datetime.now()));
+         self._logger.info("Entered Poll"+str(datetime.datetime.now()));
          for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
-             self._logger.debug('{}: {}'.format(issue.key, issue.fields.summary))
+             self._logger.info('{}: {}'.format(issue.key, issue.fields.summary))
              self._dispatch_issues_trigger(issue)
 	    
 
@@ -35,7 +35,7 @@ class JiraOOSensor(PollingSensor):
         pass
 		
     def _dispatch_issues_trigger(self, issue):
-        self._logger.debug("Entered _dispatch_issues_trigger :"+str(datetime.datetime.now()));
+        self._logger.info("Entered _dispatch_issues_trigger :"+str(datetime.datetime.now()));
         trigger = 'jira_oo.oo_issues_tracker'
         payload = {}
         payload['issue_name'] = issue.key
