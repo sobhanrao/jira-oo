@@ -7,12 +7,13 @@ class JiraOOSensor(PollingSensor):
     def setup(self):
         # Setup stuff goes here. For example, you might establish connections
         # to external system once and reuse it. This is called only once by the system.
-        self._jira_client = JIRA('http://jira-ams.demodxc.com',auth=('autoresolver', 'password'))
+         self._jira_client = JIRA('http://jira-ams.demodxc.com',auth=('autoresolver', 'password'))
+         self._logger = self.sensor_service.get_logger(name=self.__class__.__name__)
 
     def poll(self):
-         print("Entered Poll");
+         self._logger("Entered Poll"+datetime.datetime.now());
          for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
-             print('{}: {}'.format(issue.key, issue.fields.summary))
+             self._logger('{}: {}'.format(issue.key, issue.fields.summary))
              self._dispatch_issues_trigger(issue)
 	    
 
@@ -34,7 +35,7 @@ class JiraOOSensor(PollingSensor):
         pass
 		
     def _dispatch_issues_trigger(self, issue):
-        print("Entered _dispatch_issues_trigger :"+datetime.datetime.now());
+        self._logger("Entered _dispatch_issues_trigger :"+datetime.datetime.now());
         trigger = 'jira_oo.oo_issues_tracker'
         payload = {}
         payload['issue_name'] = issue.key
