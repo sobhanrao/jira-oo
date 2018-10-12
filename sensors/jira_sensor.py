@@ -10,7 +10,7 @@ class JiraOOSensor(PollingSensor):
         self._jira_client = JIRA('http://jira-ams.demodxc.com',auth=('autoresolver', 'password'))
 
     def poll(self):
-       	for issue in jira.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
+       	for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
            self._dispatch_issues_trigger(issue)
 	    
 
