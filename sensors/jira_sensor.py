@@ -12,7 +12,7 @@ class JiraOOSensor(PollingSensor):
 
     def poll(self):
          self._logger.info("Entered Poll"+str(datetime.datetime.now()));
-         for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -1d and (description ~ sobhan or  description ~glsr)', maxResults=30):
+         for issue in self._jira_client.search_issues('project = ATMTDEMO and created >= -5m and (description ~ stackstorm or  description ~jira_oo)', maxResults=30):
              self._logger.info('{}: {}'.format(issue.key, issue.fields.summary))
              self._dispatch_issues_trigger(issue)
 	    
